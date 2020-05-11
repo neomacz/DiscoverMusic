@@ -1,0 +1,37 @@
+<h2>Search by artist name, song title, or album name</h2>
+
+<mat-form-field class="input-search">
+  <mat-label>Keyword</mat-label>
+  <input matInput placeholder="Ex. Bon Jovi" [(ngModel)]="searchKeyword" (keyup.enter)="onSearch()">
+</mat-form-field>
+
+<button mat-raised-button color="primary" (click)="onSearch()">Find</button>
+<ng-container *ngIf="artists.length > 0">
+  <h2>Artists:</h2>
+  <div class="row">
+    <div *ngFor="let artist of artists; let i = index" class="img-thumb">
+      <img src={{artist.thumbnail}}>
+      {{artist.artistName}}
+    </div>
+  </div>
+  <hr/>
+</ng-container>
+<ng-container *ngIf="albums.length > 0">
+  <h2>Albums:</h2>
+  <div class="row">
+    <div *ngFor="let album of albums; let i = index" class="img-thumb">
+      <img src={{album.thumbnail}}>
+      {{album.collectionName}}
+    </div>
+  </div>
+  <hr/>
+</ng-container>
+<ng-container *ngIf="recentSearches.length > 0">
+  <h2>Recent Searches:</h2>
+  <div class="container">
+    <div *ngFor="let search of recentSearches; let i = index" class="row">
+      {{search}}
+    </div>
+  </div>
+  <hr/>
+</ng-container>
