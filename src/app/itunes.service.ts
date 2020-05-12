@@ -12,6 +12,7 @@ export class ItunesService {
     return this.http.get(`itunes/search?term=` + term);
   }
   lookup(id: number, entity?: string) {
-    return this.http.get(`itunes/lookup?id=` + id );
+    const entityParam = entity ? '&entity=' + entity : '';
+    return this.http.get(`itunes/lookup?id=` + id + entityParam);
   }
 }

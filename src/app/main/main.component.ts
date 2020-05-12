@@ -26,7 +26,7 @@ export class MainComponent implements OnInit {
         result.forEach(r => {
           const artist = {} as ArtistModel;
 
-          if (this.artists.filter(a => a.artistId === r.artistId).length === 0) {
+          if (r.artistId && this.artists.filter(a => a.artistId === r.artistId).length === 0) {
             artist.artistId = r.artistId;
             artist.artistName = r.artistName;
             artist.thumbnail = r.artworkUrl100;
@@ -34,7 +34,7 @@ export class MainComponent implements OnInit {
           }
           const album = {} as AlbumModel;
 
-          if (this.albums.filter(a => a.collectionId === r.collectionId).length === 0) {
+          if (r.collectionId && this.albums.filter(a => a.collectionId === r.collectionId).length === 0) {
             album.collectionId = r.collectionId;
             album.collectionName = r.collectionName;
             album.thumbnail = r.artworkUrl100;

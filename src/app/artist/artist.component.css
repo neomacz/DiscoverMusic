@@ -1,7 +1,3 @@
-.input-search {
-  margin-right: 15px;
-}
-
 .img-thumb {
   float: left;
   margin-right: 15px;
@@ -16,8 +12,9 @@
   float: left;
 }
 
-.container-scroll {
-  flex-wrap: nowrap;
-  overflow-x: scroll;
+.txt-artist {
+  font-size: 5vw;
+  font-weight: bold;
+  margin-top: 50px;
+  margin-bottom: 5px;
 }
-
