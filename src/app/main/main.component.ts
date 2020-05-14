@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {ItunesService} from '../itunes.service';
-import {ArtistModel} from './artist.model';
-import {AlbumModel} from './album.model';
+import {ArtistModel} from '../model/artist.model';
+import {AlbumModel} from '../model/album.model';
+import {createFeatureSelector, createSelector, Store} from '@ngrx/store';
+import * as fromFavorite from '../favorite/favorite.reducer';
 
 @Component({
   selector: 'app-main',
@@ -14,8 +16,9 @@ export class MainComponent implements OnInit {
   artists: ArtistModel[] = [];
   albums: AlbumModel[] = [];
   recentSearches: string[] = localStorage.getItem('recentSearches') ? JSON.parse(localStorage.getItem('recentSearches')) : [];
+  favorites;
 
-  constructor(private service: ItunesService) { }
+  constructor(private service: ItunesService, private store: Store<any>) { }
 
   onSearch() {
     this.service.search(this.searchKeyword)
@@ -42,8 +45,6 @@ export class MainComponent implements OnInit {
           }
 
         });
-        console.log(this.artists);
-
       });
   }
   addRecentSearch() {
@@ -58,6 +59,16 @@ export class MainComponent implements OnInit {
 
   ngOnInit(): void {
     this.initialize();
+    this.store.select(selectAllFavorite).subscribe(o => {
+      this.favorites = o;
+    });
   }
 
 }
+
+export const selectFavoriteState = createFeatureSelector<fromFavorite.State>('favorite');
+
+export const selectAllFavorite = createSelector(
+  selectFavoriteState,
+  fromFavorite.selectAllFavorites
+);

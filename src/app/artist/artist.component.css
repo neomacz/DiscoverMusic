@@ -5,11 +5,12 @@
   border-radius: 5px;
   padding: 5px;
   border: 1px grey solid;
-  max-width: 500px;
+  max-width: 250px;
 }
 
-.img-thumb img {
+.img-thumb img, a, p  {
   float: left;
+  margin-right: 5px;
 }
 
 .txt-artist {
@@ -17,4 +18,10 @@
   font-weight: bold;
   margin-top: 50px;
   margin-bottom: 5px;
+  line-height: 5vw;
+  color: rgba(0,0,255,0.5);
+}
+
+.link-back {
+  margin-bottom: 50px;
 }

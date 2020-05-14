@@ -30,17 +30,20 @@
   <h2>Recent Searches:</h2>
   <div class="container">
     <div *ngFor="let search of recentSearches; let i = index" class="row">
-      {{search}}
+      <span (click)="searchKeyword = search; onSearch()">{{search}}</span>
     </div>
   </div>
+  <p>Hint: Click or tap to initiate search</p>
   <hr/>
 </ng-container>
 
-<ng-container>
+<ng-container *ngIf="favorites.length > 0">
   <h2>My Favorites:</h2>
-  <div class="container">
-    <div *ngFor="let search of recentSearches; let i = index" class="row">
-      {{search}}
+  <div class="row container-scroll">
+    <div *ngFor="let favorite of favorites; let i = index" class="img-thumb">
+      <img src={{favorite.thumb}}>
+      <p>{{favorite.wrapperType}}: {{favorite.name}}</p>
+      <a routerLink="/{{favorite.wrapperType.toLowerCase()}}/{{favorite.id}}" *ngIf="favorite.wrapperType != 'Track'">See details</a>
     </div>
   </div>
   <hr/>

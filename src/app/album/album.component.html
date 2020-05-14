@@ -1,1 +1,45 @@
-<a routerLink="/">Back to Home</a>
+<div class="txt-artist">{{albumName}} by {{artistName}}
+  <img src={{thumbnail}}>
+  <app-favorite id="{{id}}" name="{{albumName}}" thumb="{{thumbnail}}" wrapperType="Album"></app-favorite>
+</div>
+<h2 class="link-back"><a routerLink="/artist/{{artistId}}">View Artist Details</a></h2>
+<h2 class="link-back"><a routerLink="/">Back to Home</a></h2>
+
+<h2>Songs:</h2>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="position">
+    <th mat-header-cell *matHeaderCellDef> Track No. </th>
+    <td mat-cell *matCellDef="let element"> {{element.trackNumber}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let element">
+      <a href="{{element.previewUrl}}" target="_blank">{{element.trackName}}</a>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="duration">
+    <th mat-header-cell *matHeaderCellDef> Duration </th>
+    <td mat-cell *matCellDef="let element"> {{millisToMinutesAndSeconds(element.trackTimeMillis)}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="price">
+    <th mat-header-cell *matHeaderCellDef> Price </th>
+    <td mat-cell *matCellDef="let element"> {{element.trackPrice | currency}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="favorite">
+    <th mat-header-cell *matHeaderCellDef> Favorited </th>
+    <td mat-cell *matCellDef="let element">
+      <app-favorite id="{{element.trackId}}" name="{{element.trackName}}" thumb="{{element.artworkUrl100}}" wrapperType="Track"></app-favorite>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+

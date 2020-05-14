@@ -10,9 +10,15 @@ import {StoreModule} from '@ngrx/store';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import {AppRoutingModule} from './app-routing/app-routing.module';
-import { ArtistComponent } from './artist/artist.component';
-import { AlbumComponent } from './album/album.component';
+import {ArtistComponent} from './artist/artist.component';
+import {AlbumComponent} from './album/album.component';
 import {MatIconModule} from '@angular/material/icon';
+import {MatTableModule} from '@angular/material/table';
+import { FavoriteComponent } from './favorite/favorite.component';
+import {favoriteReducer} from './favorite/favorite.reducer';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -20,6 +26,7 @@ import {MatIconModule} from '@angular/material/icon';
     MainComponent,
     ArtistComponent,
     AlbumComponent,
+    FavoriteComponent,
    ],
   imports: [
     AppRoutingModule,
@@ -30,7 +37,11 @@ import {MatIconModule} from '@angular/material/icon';
     MatIconModule,
     MatInputModule,
     MatButtonModule,
-    StoreModule.forRoot({}, {})
+    MatSnackBarModule,
+    MatTableModule,
+    StoreModule.forRoot({}),
+    StoreModule.forFeature('favorite', favoriteReducer),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]

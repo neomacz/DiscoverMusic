@@ -1,21 +1,8 @@
 <div class="txt-artist">{{artistName}}
-<button mat-icon-button (click)="toggleFavorited()">
-
-  <mat-icon
-    *ngIf="favorited"
-    aria-label="favorited button with a heart icon">
-    favorite
-  </mat-icon>
-
-  <mat-icon
-    *ngIf="!favorited"
-    aria-label="favorited button with a heart icon">
-    favorite_border
-  </mat-icon>
-
-</button>
+  <app-favorite id="{{id}}" name="{{artistName}}" thumb="{{artistThumbnail}}" wrapperType="Artist"></app-favorite>
 </div>
-<h2><a routerLink="/">Back to Home</a></h2>
+
+<h2 class="link-back"><a routerLink="/">Back to Home</a></h2>
 
 <h2>Albums:</h2>
 <div class="row container-scroll">

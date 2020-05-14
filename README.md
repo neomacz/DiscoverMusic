@@ -1,7 +1,9 @@
 # DiscoverMusic
 
 Angular web app that will allow the users to search for and discover music.
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.5.
+This application uses Angular Material components and NgRx for state management.
+
+Was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.5.
 
 Please clone this project and run 'npm install' to install all the dependencies
 

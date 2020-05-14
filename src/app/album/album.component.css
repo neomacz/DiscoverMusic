@@ -1,0 +1,12 @@
+.txt-artist {
+  font-size: 5vw;
+  font-weight: bold;
+  margin-top: 50px;
+  margin-bottom: 5px;
+  line-height: 5vw;
+  color: rgba(0,0,255,0.5);
+}
+
+.mat-elevation-z8 {
+  width: 100%;
+}

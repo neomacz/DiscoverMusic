@@ -1,0 +1,14 @@
+<button mat-icon-button (click)="toggleFavorite()">
+  <mat-icon
+    *ngIf="favorite"
+    aria-label="active favorite button with a heart icon">
+    favorite
+  </mat-icon>
+
+  <mat-icon
+    *ngIf="!favorite"
+    aria-label="inactive favorite button with a heart icon">
+    favorite_border
+  </mat-icon>
+
+</button>
