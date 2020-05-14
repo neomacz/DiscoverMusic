@@ -6,9 +6,9 @@ import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 export interface State extends EntityState<FavoriteModel> {}
 
 export const adapter: EntityAdapter<FavoriteModel> = createEntityAdapter<FavoriteModel>();
-export const initialState: State = adapter.getInitialState({});
+export const initialState: State = localStorage.getItem('favorite') ? JSON.parse(localStorage.getItem('favorite')) : adapter.getInitialState({});
 
- const favReducer = createReducer(
+const favReducer = createReducer(
   initialState,
   on(FavoriteActions.add, (state, { favorite }) => {
     return adapter.addOne(favorite, state);

@@ -40,6 +40,7 @@ export class FavoriteComponent implements OnInit {
       this.store.dispatch(FavoriteActions.add({ favorite }));
       this.snackBar.open(this.name + ' has been added to Favorite', '', { duration: 2000,
       });
+      this.updateLocalStorage();
     } else {
       this.snackBar.open('Favorite only can save 5 items', '', { duration: 2000,
       });
@@ -50,7 +51,15 @@ export class FavoriteComponent implements OnInit {
     this.store.dispatch(FavoriteActions.remove({ id }));
     this.snackBar.open(this.name + ' has been removed from Favorite', '', { duration: 2000,
     });
+    this.updateLocalStorage();
   }
+  updateLocalStorage() {
+    const subscription = this.store.select(selectFavoriteState).subscribe(o => {
+      localStorage.setItem('favorite', JSON.stringify(o));
+    });
+    subscription.unsubscribe();
+  }
+
 }
 
 export const selectFavoriteState = createFeatureSelector<fromFavorite.State>('favorite');
@@ -58,4 +67,9 @@ export const selectFavoriteState = createFeatureSelector<fromFavorite.State>('fa
 export const selectFavoriteIds = createSelector(
   selectFavoriteState,
   fromFavorite.selectFavoriteIds
+);
+
+export const selectAllFavorites = createSelector(
+  selectFavoriteState,
+  fromFavorite.selectAllFavorites
 );
